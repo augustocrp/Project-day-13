@@ -36,3 +36,17 @@ class WebScraping:
         list_of_rooms = []
         for room in self.__get_rooms():
             room_info = {}
+            
+
+            room_info["Title"] = self.__get_title(room)
+            room_info["Subtitle"] = self.__get_subtitle(room)
+            room_info["Price per Night (R$)"] = self.__get_price(room)
+            attrs = self.__get_attrs(room)
+            room_info["Guests"] = attrs.get("hós", None)
+            room_info["Bedrooms"] = attrs.get("qua", None)
+            room_info["Beds"] = attrs.get("cam", None)
+            room_info["Bathrooms"] = attrs.get("ban", None)
+
+            list_of_rooms.append(room_info)
+        
+        return list_of_rooms
